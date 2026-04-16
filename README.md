@@ -1,26 +1,133 @@
 # c-18Feb
 
-#create a student class with attributes : name , roll no. and marks 
+# create a student class with attributes : name , roll no. and marks 
 add member functions to input and display student details 
 create atleast 3 objects and display their data 
 write a c++ code
 
+
+#include <iostream>
+using namespace std;
+
+class Student {
+
+private:
+    
+    string name;
+    int rollNo;
+    float marks;
+
+public:
+   
+    // Function to input student details
+    void input() {
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter roll number: ";
+        cin >> rollNo;
+        cout << "Enter marks: ";
+        cin >> marks;
+    }
+
+    // Function to display student details
+    void display() {
+        cout << "\nStudent Details:" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+
+int main() {
+   
+    Student s1, s2, s3;
+
+    cout << "Enter details for Student 1:" << endl;
+    s1.input();
+
+    cout << "\nEnter details for Student 2:" << endl;
+    s2.input();
+
+    cout << "\nEnter details for Student 3:" << endl;
+    s3.input();
+
+    cout << "\nDisplaying Student Details:" << endl;
+    s1.display();
+    s2.display();
+    s3.display();
+
+    return 0;
+}
+
 **output**
-<img width="834" height="849" alt="image" src="https://github.com/user-attachments/assets/677807f0-d36c-4c3b-9eb3-3b8ff1d2b439" />
-<img width="620" height="448" alt="image" src="https://github.com/user-attachments/assets/49a5d9a5-5319-4fbc-9418-8804068b2c58" />
+
 
 
 <img width="498" height="803" alt="image" src="https://github.com/user-attachments/assets/8b618733-53f9-43c1-b59f-bd1e98316de4" />
 
 
-#question 2
+# question 2
 create  a bank account class . Initialize account number and balance using a constructor . Display a message when the destructor is called . Create objects inside a function to observe destructor behaviour
 
-<img width="823" height="817" alt="image" src="https://github.com/user-attachments/assets/2bc71115-4f0d-4838-882a-987cb1fd66e0" />
 
-<img width="746" height="442" alt="image" src="https://github.com/user-attachments/assets/768b442f-0cf0-4d21-90e9-2bf89dc5184d" />
 
-#question 3
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+
+private:
+
+    int accountNumber;
+    double balance;
+
+public:
+    // Constructor
+    
+    BankAccount(int accNo, double bal) {
+        accountNumber = accNo;
+        balance = bal;
+        cout << "Account " << accountNumber << " created with balance: " << balance << endl;
+    }
+
+    // Destructor
+    ~BankAccount() {
+        cout << "Destructor called for Account " << accountNumber << endl;
+    }
+
+    // Display function
+    void display() {
+        cout << "Account Number: " << accountNumber << ", Balance: " << balance << endl;
+    }
+};
+
+// Function to observe destructor behavior
+
+void createAccounts() {
+
+    BankAccount a1(101, 5000);
+    BankAccount a2(102, 10000);
+
+    cout << "\nInside function:\n";
+    a1.display();
+    a2.display();
+
+    // Destructor will be called automatically when function ends
+}
+
+int main() {
+    cout << "Entering main()\n";
+
+    createAccounts();
+
+    cout << "\nBack in main()\n";
+
+    return 0;
+}
+
+
+
+# question 3
 Create an Employee class. 
 
 Make salary private.
@@ -29,28 +136,95 @@ Provide getter and setter functions.
 
 Add validation: salary cannot be negative.
 
-<img width="841" height="812" alt="image" src="https://github.com/user-attachments/assets/907a7557-5e98-410a-a19d-e51cd280dfb7" />
-<img width="729" height="406" alt="image" src="https://github.com/user-attachments/assets/3a2695db-1aba-4632-ad97-74477559f66f" />
+
+#include <iostream>
+using namespace std;
+
+class Employee {
+
+private:
+
+    double salary;  // private data member
+
+public:
+    // Setter with validation
+    
+    void setSalary(double s) {
+        if (s >= 0) {
+            salary = s;
+        } else {
+            cout << "Error: Salary cannot be negative!" << endl;
+        }
+    }
+
+    // Getter
+    double getSalary() {
+        return salary;
+    }
+};
+
+int main() {
+    Employee emp;
+
+    emp.setSalary(50000);
+    cout << "Salary: " << emp.getSalary() << endl;
+
+    emp.setSalary(-1000);  // invalid
+    cout << "Salary after invalid input: " << emp.getSalary() << endl;
+
+    return 0;
+}
+
+
 **output**
 <img width="519" height="278" alt="image" src="https://github.com/user-attachments/assets/c1ac6977-59af-4bee-8d4d-e711c45ae949" />
 
 #question 4
 Create a class Calculator
 
-Overload a function add() for:
-
-int
-
-double
-
-three parameters
+Overload a function add() for:int double three parameters
 
 
-<img width="626" height="823" alt="image" src="https://github.com/user-attachments/assets/2df798e7-c606-4e39-9c8e-c866b8340607" />
+#include <iostream>
+using namespace std;
+
+class Calculator {
+
+public:
+    // Add two integers
+    
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    // Add two doubles
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    // Add three integers
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+};
+
+int main() {
+
+    Calculator calc;
+
+    cout << "Sum of two integers: " << calc.add(10, 20) << endl;
+    cout << "Sum of two doubles: " << calc.add(5.5, 2.3) << endl;
+    cout << "Sum of three integers: " << calc.add(1, 2, 3) << endl;
+
+    return 0;
+}
+
+
+
 **output**
 <img width="369" height="216" alt="image" src="https://github.com/user-attachments/assets/9d7f97fd-f30d-489b-a3b5-a3b53c33c7ac" />
 
-#question 5
+# question 5
 Create a struct Subject { string name; int marks; }.
 Create a class Student with:
 
@@ -63,34 +237,251 @@ member functions: input(), display(), total(), grade()
 Store N students using pointer to object array, find topper, and free all memory properly.
 
 **code**
-<img width="756" height="813" alt="image" src="https://github.com/user-attachments/assets/49814493-cc34-47e1-b714-7209af37f3ed" />
-<img width="786" height="810" alt="image" src="https://github.com/user-attachments/assets/98864d72-49e9-4869-97f7-3038a1839fa8" />
-<img width="866" height="810" alt="image" src="https://github.com/user-attachments/assets/e3695ff5-6ff3-4336-b5ab-5aa96dce1257" />
+
+
+#include <iostream>
+using namespace std;
+
+// Struct Subject
+
+struct Subject {
+    string name;
+    int marks;
+};
+
+class Student {
+private:
+
+    int roll;
+    string name;
+    Subject* subjects; // dynamic array of subjects
+    int n;             // number of subjects
+
+public:
+
+    // Constructor
+    
+    Student(int numSubjects = 0) {
+        n = numSubjects;
+        if (n > 0)
+            subjects = new Subject[n];
+        else
+            subjects = nullptr;
+    }
+
+    // Destructor
+    ~Student() {
+        delete[] subjects;
+    }
+
+    // Input function
+    void input() {
+        cout << "Enter Roll No: ";
+        cin >> roll;
+        cout << "Enter Name: ";
+        cin >> name;
+
+        for (int i = 0; i < n; i++) {
+            cout << "Enter subject " << i + 1 << " name: ";
+            cin >> subjects[i].name;
+            cout << "Enter marks: ";
+            cin >> subjects[i].marks;
+        }
+    }
+
+    // Display function
+    void display() {
+        cout << "\nRoll No: " << roll << "\nName: " << name << endl;
+        for (int i = 0; i < n; i++) {
+            cout << subjects[i].name << ": " << subjects[i].marks << endl;
+        }
+        cout << "Total: " << total() << endl;
+        cout << "Grade: " << grade() << endl;
+    }
+
+    // Total marks
+    int total() {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += subjects[i].marks;
+        }
+        return sum;
+    }
+
+    // Grade calculation
+    char grade() {
+        double avg = (double)total() / n;
+        if (avg >= 90) return 'A';
+        else if (avg >= 75) return 'B';
+        else if (avg >= 50) return 'C';
+        else return 'F';
+    }
+};
+
+int main() {
+
+    int N, numSubjects;
+
+    cout << "Enter number of students: ";
+    cin >> N;
+
+    cout << "Enter number of subjects per student: ";
+    cin >> numSubjects;
+
+    // Dynamic array of Student objects
+    Student* students = new Student[N];
+
+    // Reinitialize with subject count
+    for (int i = 0; i < N; i++) {
+        students[i] = Student(numSubjects);
+    }
+
+    // Input data
+    for (int i = 0; i < N; i++) {
+        cout << "\nEnter details for student " << i + 1 << ":\n";
+        students[i].input();
+    }
+
+    // Display all students
+    cout << "\n--- Student Details ---\n";
+    for (int i = 0; i < N; i++) {
+        students[i].display();
+    }
+
+    // Find topper
+    int topperIndex = 0;
+    for (int i = 1; i < N; i++) {
+        if (students[i].total() > students[topperIndex].total()) {
+            topperIndex = i;
+        }
+    }
+
+    cout << "\n--- Topper ---\n";
+    students[topperIndex].display();
+
+    // Free memory
+    delete[] students;
+
+    return 0;
+}
+
 
 **output**
 <img width="499" height="818" alt="image" src="https://github.com/user-attachments/assets/6032dcde-d8c9-4abe-b379-d1e37ae9b26b" />
 
-#question 6
-Create a struct Node containing:
+# question 6
+Create a struct Node containing: Patient data (id, name, severity) Node* next Create a class PatientQueue implementing:enqueue (based on severity priority) dequeue display Use dynamic memory (new/delete) and demonstrate queue operations.
 
-Patient data (id, name, severity)
+# code
 
-Node* next
+#include <iostream>
+using namespace std;
 
-Create a class PatientQueue implementing:
+// Node structure
+struct Node {
 
-enqueue (based on severity priority)
+    int id;
+    string name;
+    int severity; // higher value = higher priority
+    Node* next;
+};
 
-dequeue
+class PatientQueue {
+private:
 
-display
-Use dynamic memory (new/delete) and demonstrate queue operations.
+    Node* front;
 
-#code
-<img width="667" height="826" alt="image" src="https://github.com/user-attachments/assets/eca2b26a-04ff-4c2c-9682-6924dddb4462" />
-<img width="846" height="819" alt="image" src="https://github.com/user-attachments/assets/9bdb7721-f9cd-425a-b495-cf1d4a5bdc9e" />
-<img width="841" height="812" alt="image" src="https://github.com/user-attachments/assets/92b07110-2f22-47c2-a92b-134aa678ee33" />
-<img width="763" height="538" alt="image" src="https://github.com/user-attachments/assets/6f9ed63e-5730-4869-8c96-8f45948a5d24" />
+public:
+
+    // Constructor
+    PatientQueue() {
+        front = nullptr;
+    }
+
+    // Enqueue (priority-based insertion)
+    void enqueue(int id, string name, int severity) {
+        Node* newNode = new Node{ id, name, severity, nullptr };
+
+        // Insert at front if queue is empty or highest priority
+        if (front == nullptr || severity > front->severity) {
+            newNode->next = front;
+            front = newNode;
+        } else {
+            Node* temp = front;
+            // Find correct position
+            while (temp->next != nullptr && temp->next->severity >= severity) {
+                temp = temp->next;
+            }
+            newNode->next = temp->next;
+            temp->next = newNode;
+        }
+
+        cout << "Patient " << name << " added to queue.\n";
+    }
+
+    // Dequeue (remove highest priority patient)
+    void dequeue() {
+        if (front == nullptr) {
+            cout << "Queue is empty!\n";
+            return;
+        }
+
+        Node* temp = front;
+        cout << "Removing patient: " << temp->name << endl;
+
+        front = front->next;
+        delete temp;
+    }
+
+    // Display queue
+    void display() {
+        if (front == nullptr) {
+            cout << "Queue is empty!\n";
+            return;
+        }
+
+        Node* temp = front;
+        cout << "\nPatient Queue:\n";
+        while (temp != nullptr) {
+            cout << "ID: " << temp->id
+                 << ", Name: " << temp->name
+                 << ", Severity: " << temp->severity << endl;
+            temp = temp->next;
+        }
+    }
+
+    // Destructor to free memory
+    ~PatientQueue() {
+        while (front != nullptr) {
+            Node* temp = front;
+            front = front->next;
+            delete temp;
+        }
+    }
+};
+
+int main() {
+
+    PatientQueue pq;
+
+    // Enqueue patients
+    pq.enqueue(1, "Amit", 3);
+    pq.enqueue(2, "Riya", 5);
+    pq.enqueue(3, "John", 2);
+    pq.enqueue(4, "Sara", 4);
+
+    pq.display();
+
+    // Dequeue operations
+    pq.dequeue();
+    pq.display();
+
+    pq.dequeue();
+    pq.display();
+
+    return 0;
+}
+
 
 **output**
 <img width="751" height="568" alt="image" src="https://github.com/user-attachments/assets/ab41f2d3-f8df-4065-96bc-b0224e3313e6" />
@@ -102,13 +493,7 @@ int id; string title; string author; bool issued;
 
 BookNode* next
 
-Create a class Library with:
-
-BookNode* head
-
-addBook(), issueBook(id), returnBook(id), searchBook(title), displayAll()
-
-Use pointers to traverse linked list and manage memory safely.
+Create a class Library with: BookNode* head addBook(), issueBook(id), returnBook(id), searchBook(title), displayAll() Use pointers to traverse linked list and manage memory safely.
 
 
 **output**
@@ -118,6 +503,7 @@ using namespace std;
 
 // Structure for Book Node
 struct BookNode {
+
     int id;
     string title;
     string author;
@@ -126,11 +512,15 @@ struct BookNode {
 };
 
 class Library {
+
 private:
+
     BookNode* head;
 
 public:
+
     // Constructor
+    
     Library() {
         head = nullptr;
     }
@@ -253,6 +643,7 @@ public:
 };
 
 int main() {
+
     Library lib;
 
     // Adding books
@@ -298,6 +689,7 @@ using namespace std;
 
 // Transaction node
 struct Transaction {
+
     string type;      // "Deposit" or "Withdraw"
     double amount;
     string date;
@@ -305,13 +697,16 @@ struct Transaction {
 };
 
 class BankAccount {
+
 private:
+
     int accountNo;
     string holderName;
     double balance;
     Transaction* historyHead;
 
 public:
+
     // Constructor
     BankAccount(int accNo, string name, double bal = 0) {
         accountNo = accNo;
@@ -405,6 +800,7 @@ public:
 };
 
 int main() {
+
     int N;
     cout << "Enter number of accounts: ";
     cin >> N;
@@ -475,15 +871,7 @@ reate a struct Course:
 
 courseCode, courseName, credits
 
-Create a class Student:
-
-roll, name
-
-Course* registeredCourses (dynamic)
-
-registerCourses(), dropCourse(code), showCourses(), totalCredits()
-
-Store multiple students using pointers and print list of students registered in a given course.
+Create a class Student: roll, name Course* registeredCourses (dynamic) registerCourses(), dropCourse(code), showCourses(), totalCredits() Store multiple students using pointers and print list of students registered in a given course.
 
 
 **code**
@@ -493,6 +881,7 @@ using namespace std;
 
 // Course structure
 struct Course {
+
     string courseCode;
     string courseName;
     int credits;
@@ -500,13 +889,16 @@ struct Course {
 
 // Student class
 class Student {
+
 private:
+
     int roll;
     string name;
     Course* registeredCourses;  // Dynamic array
     int numCourses;
 
 public:
+
     // Constructor
     Student(int r, string n) {
         roll = r;
@@ -603,6 +995,7 @@ public:
 };
 
 int main() {
+
     int numStudents = 3;
     Student** students = new Student*[numStudents];
 
@@ -655,20 +1048,8 @@ int main() {
 <img width="752" height="810" alt="image" src="https://github.com/user-attachments/assets/937c6e4c-4b6e-407e-93db-0e785818894a" />
 
 #question 10
-Create a struct DirNode:
-
-string name; bool isFile;
-
-DirNode* child; DirNode* sibling;
-
-Create a class DirectoryTree:
-
-createFolder(path), createFile(path)
-
-list(path)
-
-deleteNode(path)
-Implement using pointers (tree navigation) and free memory in destructor.
+Create a struct DirNode: string name; bool isFile; DirNode* child; DirNode* sibling; Create a class DirectoryTree:createFolder(path), createFile(path) list(path)
+deleteNode(path) Implement using pointers (tree navigation) and free memory in destructor.
 
 
 **code**
@@ -680,6 +1061,7 @@ using namespace std;
 
 // Directory Node
 struct DirNode {
+
     string name;
     bool isFile;
     DirNode* child;    // First child (folder or file)
@@ -688,7 +1070,9 @@ struct DirNode {
 
 // Directory Tree class
 class DirectoryTree {
+
 private:
+
     DirNode* root;
 
     // Helper: split path by '/'
@@ -750,8 +1134,10 @@ private:
     }
 
 public:
+
     // Constructor
     DirectoryTree() {
+    
         root = new DirNode{"/", false, nullptr, nullptr};
     }
 
@@ -843,6 +1229,7 @@ public:
 };
 
 int main() {
+
     DirectoryTree dt;
 
     dt.createFolder("/home/user/docs");
