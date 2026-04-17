@@ -1,9 +1,7 @@
 # c-18Feb
 
-# create a student class with attributes : name , roll no. and marks 
-add member functions to input and display student details 
-create atleast 3 objects and display their data 
-write a c++ code
+# Question 1
+create a student class with attributes : name , roll no. and marks add member functions to input and display student details create atleast 3 objects and display their data write a c++ code
 
 
 #include <iostream>
